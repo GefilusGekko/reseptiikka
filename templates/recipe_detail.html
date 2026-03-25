@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}{{ recipe.name }} - Recipe Manager{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/" class="text-decoration-none">All Recipes</a></li>
+                <li class="breadcrumb-item active">{{ recipe.name }}</li>
+            </ol>
+        </nav>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">{{ recipe.name }}</h4>
+                <a href="/" class="btn btn-outline-secondary btn-sm">Back to List</a>
+            </div>
+            <div class="card-body">
+                <h6>Instructions</h6>
+                <p class="lead">{{ recipe.instructions }}</p>
+                
+                <hr>
+                
+                <h6>Ingredients ({{ recipe.ingredients|length }})</h6>
+                <ul class="list-group list-group-flush">
+                    {% for ing in recipe.ingredients %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>{{ ing.name }}</span>
+                        <span class="text-primary fw-bold">{{ ing.quantity }} {{ ing.unit }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="card-footer bg-white">
+                <form method="POST" action="/recipes/{{ recipe.id }}" onsubmit="return confirm('Delete this recipe?');">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger">Delete Recipe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

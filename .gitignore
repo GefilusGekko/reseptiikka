@@ -1,0 +1,35 @@
+# Ignore Git metadata
+.git/
+
+# Ignore IDE files and directories
+.idea/
+*.iml
+/.vscode
+
+# Ignore project build files
+target/
+build/
+
+# Ignore other types of files
+*.log
+*.tmp
+*.db
+
+
+# Python
+
+__pycache__/
+*.py[codz]
+*$py.class
+instance/
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
